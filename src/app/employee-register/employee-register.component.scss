@@ -1,0 +1,114 @@
+//   width: 800px;
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  // height: 100vh; // Adjust as needed
+
+  // .card {
+  //   height: 100%;
+  //   background-color: rgb(209, 209, 209);
+  //   border-width: 10px;
+  //   border-radius: 10px;
+  //  border-color: rgb(157, 157, 158);
+    // max-width: 700px; // Adjust as needed
+    //   padding: 40px;    
+  // }
+    .cardbody {
+      h1 {
+        font-size: 36px;
+        font-weight: bolder;
+        font-family: 'Times New Roman', Times, serif;
+        color: rgb(0, 64, 255);
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      button {
+        // width: 100%;
+        height: 2.7rem;
+        max-width: 200px; // Adjust as needed
+        margin: 0 auto;
+        display: block;
+        border-radius: 20%;
+        font-size: 25px;
+        color: rgb(245, 245, 245);
+        background-color: rgb(64, 176, 27);
+        margin-bottom: 20px;
+      }
+      mat-form-field{
+        width: 15rem;
+        height: 4rem;
+        border-radius: 10px;
+      }
+      &.mat-form-field-invalid .mat-input-element {
+        border-color: transparent; // Set border color to transparent
+      }
+      
+    }
+  }
+  
+
+#dropdowmn{
+  margin-left: 4.4rem;
+}
+
+.gender {
+  margin-left: 40px;
+  font-weight: bolder;
+  font-size: 23px;
+  font-family: 'Times New Roman', Times, serif;
+  padding: 2rem;
+  justify-content:space-evenly;
+}
+.gender2{
+  margin-left: 11rem;
+}
+
+#dropdowmn {
+  width: 450px;
+  display: flex;
+  overflow: auto;
+  padding: 2%;
+  margin-left: -40px;
+  position: absolute;
+}
+
+.name {
+  margin-left: 4rem;
+}
+.empname{
+  width:15.5rem;
+}
+
+.dob {
+  margin-left: 4rem;
+}
+
+.address {
+  width: 16rem;
+  height: 5rem;
+  margin-left: 4rem;
+  position: absolute;
+}
+
+h2 {
+  font-size: 30px;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bolder;
+  margin-left: 4rem;
+}
+.label{
+  font-size: 20px;
+  font-weight: bolder;
+  font-family: 'Times New Roman', Times, serif;
+  margin-left: 13rem;
+}
+.summa{
+  font-size: 16px;
+  // padding: 8px 12px;
+  border: 5px solid #ccc;
+  border-radius: 8px;
+  transition: border-color 0.3s;
+}

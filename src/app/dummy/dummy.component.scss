@@ -1,0 +1,129 @@
+.container {
+    // background-color: #9a9a9a;
+    width: 1500px;
+}
+
+
+.card {
+    width: max-content;
+    height: fit-content;
+    align-items: center;
+    // margin-left: 300px;
+    display: flex;
+    // background-color: rgb(247, 195, 195);
+    // background-image: radial-gradient(to right,green,blue,red);
+    background-image: linear-gradient(to left, rgb(203, 205, 203), rgb(134, 141, 236));
+    // box-shadow: 10px 4px 8px rgba(39, 109, 238, 0.1); // Shadow
+    // border: 5px solid; // Border
+    // border-color: #535353; // Border Color
+    // border-radius: 20px; // Border Radius
+    margin-left: 6rem;
+
+    box-shadow: 0px 4px 20px 0cap rgb(255, 162, 80);
+    /* Shadow effect */ 
+    padding: 20px;
+    /* Padding inside the card */
+    transition: box-shadow 0.3s ease;
+    /* Smooth tra
+}
+.card:hover {
+    box-shadow: 0 8px 12px rgba(6, 4, 5, 0.2); /* Increase shadow on hover */
+}
+
+// @media screen and (max-width: 600px) {
+//     .card {
+//         flex-direction: column; /* Stack items vertically */
+//         justify-content: center; /* Center items vertically */
+//         margin: 0 auto; /* Center the card horizontally */
+//     }
+// }
+.register-form {
+    width: 65rem;
+    // height: 400px;
+    // margin-left: 10rem;
+    border: 10px;
+}
+
+@media screen and (max-width: 1200px) {
+    .register-form {
+        width: 90%;
+        /* Make the form width 90% of the viewport */
+        margin-left: auto;
+        /* Center the form horizontally */
+        margin-right: auto;
+    }
+}
+
+/* Media query for screens smaller than 600px */
+@media screen and (max-width: 600px) {
+    .register-form {
+        width: 100%;
+        /* Make the form width 100% of the viewport */
+        margin-left: auto;
+        /* Center the form horizontally */
+        margin-right: auto;
+    }
+}
+
+// .email{
+//     width:fit-content;
+//     height: 3rem;
+// }
+.date {
+    // width:13.6rem;
+    width: fit-content;
+}
+
+h2 {
+    color: brown;
+    align-items: center;
+    font-size: 25px;
+    font-weight: bolder;
+    font-family: 'Times New Roman', Times, serif;
+    // text-shadow: -5px 2px;
+}
+
+.add {
+
+    margin-left: 60rem;
+    margin-bottom: 2rem;
+}
+
+.mobnum {
+    width: max-content;
+    height: 3rem;
+}
+
+.gender {
+    width: max-content;
+    height: 3rem;
+}
+
+
+.header {
+    background-color: #789ff8;
+    /* Background color of header cells */
+    color: #fffafa;
+    /* Text color of header cells */
+    font-weight: bolder;
+    /* Bold text for header cells */
+    font-size: 10px;
+    text-align: center;
+    border-bottom: 1px solid #76e621;
+    /* Border bottom for header cells */
+    padding: 10px;
+    /* Padding for header cells */
+}
+
+//   .header:hover{
+//     background-color: #f23be0;
+//   }
+
+.Details{
+    font-size: 30px;
+    font-weight: bolder;
+    color: #76e621;
+}
+.table{
+    width:400px;
+}

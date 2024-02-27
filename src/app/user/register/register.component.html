@@ -1,0 +1,206 @@
+<div class="container mt-4">
+  <div class="card card-body" *ngIf="hideRegisterForm">
+    <div class="register-form">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <h2 class="text-center">Employee Register Form</h2>
+        <div class="row">
+          <div class="col form-group">
+            <label class="text-label">Full Name</label>
+            <input matInput formControlName="fullname" name="fullname" class="form-control"
+              placeholder="Enter Full Name" />
+            <span *ngIf="form.get('fullname').invalid && (form.get('fullname').dirty || form.get('fullname').touched)"
+              class="text-danger">
+              <span *ngIf="form.get('fullname').errors?.required">Name is Required</span>
+            </span>
+          </div>
+          <div class="col form-group ">
+            <label class="text-label">Mobile Number</label>
+            <input matInput type="number" name="mobnum" class="form-control" formControlName="mobnum" onlyNumber
+              placeholder="Enter Mobile Number">
+            <div *ngIf="form.get('mobnum').invalid && (form.get('mobnum').dirty || form.get('mobnum').touched)"
+              class="text-danger">
+              <div *ngIf="form.get('mobnum').errors?.required">Mobile number is required</div>
+              <div *ngIf="form.get('mobnum').errors?.pattern">Invalid mobile number format</div>
+            </div>
+          </div>
+          <div class="col form-group ">
+            <label class="text-label">Email-Id</label>
+            <input type="text" name="email" class="form-control" formControlName="email" placeholder="Enter Email-Id" />
+            <div *ngIf="form.get('email').invalid && (form.get('email').dirty || form.get('email').touched)"
+              class="text-danger">
+              <div *ngIf="form.get('email').errors?.required">Email is required</div>
+              <div *ngIf="form.get('email').errors?.email">Invalid email format</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-4">
+          <div class="col form-group date">
+            <span class="p-float-label ">
+              <p-calendar formControlName="date" inputId="birth_date" class="form-control"></p-calendar>
+              <label for="birth_date">Date of Birth</label>
+              <div *ngIf="form.get('date').invalid && (form.get('date').dirty || form.get('date').touched)"
+                class="text-danger">
+                <div *ngIf="form.get('date').errors?.required">Birth Date is required</div>
+              </div>
+            </span>
+          </div>
+
+          <div class="col form-group form-control gender">
+            <label>Gender :</label>
+            <mat-radio-group name="Gender" formControlName="Gender">
+              <mat-radio-button value="male">Male</mat-radio-button>
+              <mat-radio-button value="female">Female</mat-radio-button>
+              <mat-radio-button value="Others">Others</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class="col form-group">
+            <span class="p-float-label ">
+              <textarea rows="2" cols="25" class="form-control" pInputTextarea formControlName="address" name="address"
+                [autoResize]="true"></textarea>
+              <label for="address">Address Here..</label>
+            </span>
+            <div *ngIf="form.get('address').invalid && (form.get('address').dirty || form.get('address').touched)"
+              class="text-danger">
+              <div *ngIf="form.get('address').errors?.required">Address is required</div>
+              <div *ngIf="form.get('address').errors?.minlength">Address must be at least {{
+                form.get('address').errors?.minlength.requiredLength }} characters</div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-4">
+          <div class="col ">
+            <mat-form-field class=" form-group form-control dropdown">
+              <mat-label>Select Country</mat-label>
+              <mat-select formControlName="selectedCountry" (selectionChange)="onCountryChange($event)"
+                name="selectedCountry">
+                <mat-option *ngFor="let country of countries" [value]="country.name">{{ country.name
+                  }}</mat-option>
+              </mat-select>
+
+            </mat-form-field>
+          </div>
+          <div class="col  ">
+            <mat-form-field class=" form-group form-control dropdown">
+              <mat-label>Select State</mat-label>
+              <mat-select form="selectedState" name="selectedState" formControlName="selectedState"
+                (selectionChange)="onStateChange($event)">
+                <mat-option *ngFor="let state of filteredStates" [value]="state.name">{{ state.name
+                  }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col ">
+            <mat-form-field class="form-group form-control dropdown">
+              <mat-label>Select City</mat-label>
+              <!-- (selectionChange)="onCityChange()" -->
+              <mat-select formControlName="selectedCity" name="selectedCity"> //(selectionChange)="onCityChange($event)"
+                <mat-option *ngFor="let city of filteredCities" [value]="city.name">{{ city.name }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row mt-4">
+          <div class="col"></div>
+          <div class="col">
+            <button class="btn btn-warning">Reset</button>
+          </div>
+          <div class="col">
+            <button type="submit" class="btn btn-success">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<!-- // *ngIf="hideEmployeeDetails"  -->
+<!-- <div class="card">
+    <div class="flex justify-content-center">
+      <button type="button" (click)="onDialog()" pButton icon="pi pi-external-link" label="View"></button>
+    </div> -->
+
+<div class="container1">
+  <div class="row mt-4">
+    <h3 class="text-center Details">Employee Details</h3>
+  </div>
+  <div class="row">
+    <div class="col-4">
+    </div>
+    <div class="col">
+      <button type="button" class="btn btn-info add" (click)="addEmployee()">Add Employee</button>
+    </div>
+  </div>
+  <div class="mat-elevation-z8">
+    <mat-form-field class="form-control">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input />
+    </mat-form-field>
+    <table mat-table [dataSource]="empDetails" class="mat-elevation-z8 ">
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> Slnum. </th>
+        <td mat-cell *matCellDef="let emp"> {{emp.id}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="empname">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let emp"> {{emp.fullname}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="mobnum">
+        <th mat-header-cell *matHeaderCellDef> Mobile Number </th>
+        <td mat-cell *matCellDef="let emp"> {{emp.mobnum}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef> Date Of Birth </th>
+        <td mat-cell *matCellDef="let emp"> {{emp.date | date}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="address">
+        <th mat-header-cell *matHeaderCellDef> Address </th>
+        <td mat-cell *matCellDef="let emp"> {{emp.address}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Gender">
+        <th mat-header-cell *matHeaderCellDef> Gender </th>
+        <td mat-cell *matCellDef="let emp"> {{emp.Gender}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="selectedCountry">
+        <th mat-header-cell *matHeaderCellDef> Country </th>
+        <td mat-cell *matCellDef="let emp"> {{emp.selectedCountry}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="selectedState">
+        <th mat-header-cell *matHeaderCellDef> State </th>
+        <td mat-cell *matCellDef="let emp"> {{emp.selectedState}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="selectedCity">
+        <th mat-header-cell *matHeaderCellDef> City </th>
+        <td mat-cell *matCellDef="let emp"> {{emp.selectedCity}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Action </th>
+        <td mat-cell *matCellDef="let emp">
+          <button mat-raised-button color="accent" (click)="editEmployee(emp.id)">Edit</button>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef> Delete </th>
+        <td mat-cell *matCellDef="let emp">
+          <button mat-raised-button color="warn" (click)="deleteEmployee(emp.id)" >Delete</button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row class="header" *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+    </table>
+  </div>
+</div>

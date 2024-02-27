@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="row">
+        <div class="col"></div>
+        <div class="col">
+            <div class="card ">
+                <form [formGroup]="trailForm" class="dropdown">
+                    <div class="row mt-4">
+                        <div class="col formGroup">
+                            <!-- <mat-form-field appearance="outline">
+                                <mat-label>Select Country</mat-label>
+                                <mat-select formControlName="selectedCountry" (selectionChange)="onCounrtyChange()">
+                                    <mat-option *ngFor="let country of countriesList" [value]="country.countryName">{{
+                                        country.countryName
+                                        }}</mat-option>
+                                </mat-select>
+                            </mat-form-field> -->
+
+                            <div class="col ">
+                                <mat-form-field class=" form-group form-control" appearance="outline">
+                                  <mat-label>Select Country</mat-label>
+                                  <mat-select formControlName="selectedCountry" (selectionChange)="onCountryChange($event)"
+                                    name="selectedCountry">
+                                    <mat-option *ngFor="let country of countryList" [value]="country.countryname">{{ country.countryname
+                                      }}</mat-option>
+                                  </mat-select>
+                                </mat-form-field>
+                              </div>
+                        </div>
+                        <div class="col formGroup">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Select State</mat-label>
+                                <mat-select formControlName="selectedState" (selectionChange)="onStateChange($event)">
+                                    <mat-option *ngFor="let state of filteredStates" [value]="state.statename">{{state.statename}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Select City</mat-label>
+                                <mat-select formControlName="selectedCity">
+                                    <mat-option *ngFor="let city of filteredCities" [value]="city.cityname">{{city.cityname}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
+</div>

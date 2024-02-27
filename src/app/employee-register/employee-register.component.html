@@ -1,0 +1,102 @@
+<div class="container">
+  <div class="card">
+    <div class="cardbody border-5">
+      <h1>Employee Register</h1>
+      <form class="form" [formGroup]="regform" (ngSubmit)="onSubmit()">
+        <div class="row mt-4">
+          <div class="col-5 name">
+            <mat-form-field class="full-width empname">
+              <mat-label>Employee Name</mat-label>
+              <input matInput formControlName="empname" class="summa">
+              <mat-error *ngIf="regform.get('empname')?.hasError('required')">Name is required</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <mat-form-field class="full-width">
+              <mat-label>Mobile Number</mat-label>
+              <span matTextPrefix>+91 &nbsp;</span>
+              <input type="num" matInput placeholder="555-555-1234" formControlName="mobnum">
+              <mat-error *ngIf="regform.get('mobnum')?.hasError('required')">Mobile Number is
+                required</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row mt-4">
+          <div class="col-4 dob">
+            <mat-form-field>
+              <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="date">
+              <mat-error *ngIf="regform.get('date')?.hasError('required')">Date is Mandatory</mat-error>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <mat-form-field class="full-width address">
+              <mat-label>Address</mat-label>
+              <textarea matInput formControlName="address"></textarea>
+              <mat-error *ngIf="regform.get('address')?.hasError('required')">Address required</mat-error>
+            </mat-form-field>
+          </div>
+
+        </div>
+        <div class="row mt-4">
+          <div class="col gender2">
+            <mat-label class="gender">Gender :</mat-label>
+            <mat-radio-group formControlName="gender">
+              <mat-radio-button value="male">Male</mat-radio-button>
+              <mat-radio-button value="female">Female</mat-radio-button>
+              <mat-radio-button value="others">Others</mat-radio-button>
+            </mat-radio-group>
+            <mat-error *ngIf="regform.get('gender')?.hasError('required')">Gender is Mandatory</mat-error>
+          </div>
+        </div>
+        <div class="col mt-3" id="dropdown">
+          <div class="row">
+            <div class="col">
+              <div class="col"></div>
+              <mat-label class="label"> Country :</mat-label>
+            </div>
+            <div class="col">
+              <mat-form-field class="form-group">
+                <mat-label>Select Country</mat-label>
+                <mat-select formControlName="selectedCountry" (selectionChange)="onCountryChange()">
+                  <mat-option *ngFor="let country of countries" [value]="country.name">{{ country.name }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <mat-label class="label">&nbsp;&nbsp;&nbsp;State :</mat-label>
+            </div>
+            <div class="col">
+              <mat-form-field class="form-group">
+                <mat-label>Select State</mat-label>
+                <mat-select formControlName="selectedState" (selectionChange)="onStateChange()">
+                  <mat-option *ngFor="let state of states" [value]="state">{{ state }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <mat-label class="label">&nbsp;&nbsp;&nbsp; City :</mat-label>
+            </div>
+            <div class="col">
+              <mat-form-field class="form-group">
+                <mat-label>Select City</mat-label>
+                <!-- (selectionChange)="onCityChange()" -->
+                <mat-select formControlName="selectedCity">
+                  <mat-option *ngFor="let city of cities" [value]="city">{{ city }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <!-- <button label="PrimeNG" styleClass="p-button-success" type="submit">Submit</button> -->
+          <button mat-raised-button type="submit">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
